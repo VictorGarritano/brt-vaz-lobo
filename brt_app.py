@@ -16,12 +16,14 @@ st.title("O BRT tá chegando em Vaz Lobo?")
     show_spinner="Puxando os dados da API do BRT...",
 )
 def get_data():
-    tcvlo = requests.get("https://api.mobilidade.rio/gtfs/stops/?stop_code=TCVLO")
-    response_json = tcvlo.json()
-    loc = [
-        response_json["results"][0]["stop_lat"],
-        response_json["results"][0]["stop_lon"],
-    ]
+    # tcvlo = requests.get("https://api.mobilidade.rio/gtfs/stops/?stop_code=TCVLO")
+    # response_json = tcvlo.json()
+    # loc = [
+    #     response_json["results"][0]["stop_lat"],
+    #     response_json["results"][0]["stop_lon"],
+    # ]
+
+    loc = [-22.85647, -43.32815]
 
     results = requests.get("https://api.mobilidade.rio/predictor/?stop_id=3084BC0001U2")
 
@@ -41,7 +43,7 @@ minutes = int(next_arrival)
 seconds = (next_arrival - minutes) * 60
 
 st.info(
-    f"O próximo BRT deve estar chegando em {minutes} minuto(s) e {seconds:.0f} segundos..."
+    f"O próximo BRT deve estar chegando em {minutes} minuto(s) e {seconds:.0f} segundo(s)..."
 )
 
 st.dataframe(next_brts)
